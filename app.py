@@ -94,5 +94,4 @@ def decode():
         download_name="decoded_"+"".join(data['data'].split("_")[1:])
         )
 
-if __name__ == '__main__':
-    app.run(debug=True)
+
