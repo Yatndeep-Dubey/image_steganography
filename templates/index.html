@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Encoder/Decoder</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+            width: 80%;
+            height: 80%;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .left,
+        .right {
+            flex: 1;
+            padding: 20px;
+        }
+
+        .left {
+            background-color: #fff;
+        }
+
+        .right {
+            background-color: #f9f9f9;
+        }
+
+        h2 {
+            margin-top: 0;
+        }
+
+        input[type="file"],
+        input[type="password"],
+        textarea {
+            margin-bottom: 10px;
+            width: calc(100% - 18px);
+            /* Adjusted width for input fields */
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="left">
+            <h2>Encoding</h2>
+            <form action="/encode" method="post" enctype="multipart/form-data">
+                <input type="file" id="imageFileEncode" accept="image/*" name="imageFileEncode" required>
+                <textarea id="textToHide" placeholder="Text to hide" name="textToHide"></textarea>
+                <p>OR</p>
+                <input type="file" id="fileToHide" name="fileToHide">
+                <input type="password" id="encodePassword" placeholder="Password" name="encodePassword" required>
+                <button type="submit">Encode</button>
+            </form>
+
+        </div>
+        <div class="right">
+        
+            <h2>Decoding</h2>
+             <form action="/decode" method="post" enctype="multipart/form-data">
+           
+            <input type="file" id="imageFileDecode" name="imageFileDecode" accept="image/*" required>
+            <input type="password" id="decodePassword" placeholder="Password" name="encodePassword" required>
+            <button type="submit">Decode</button>
+            {% with messages = get_flashed_messages() %}
+ {% if messages %}
+  <ul>
+  {% for message in messages %}
+    <li>{{ message }}</li>
+  {% endfor %}
+  </ul>
+ {% endif %}
+{% endwith %}
+            {% if textIsHidden %}
+            <textarea disabled >{{hiddenText}}</textarea>
+            
+            {% else %}
+            {% endif %}
+            </form>
+        </div>
+    </div>
+
+</body>
+
+</html>
