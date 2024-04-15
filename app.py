@@ -25,6 +25,24 @@ mycollection = mydb["mycollection"]
 @app.route('/')
 def index():
     return render_template('index.html',textIsHidden=False)
+@app.route('/new_design')
+def new_design():
+    return render_template('new_index.html',textIsHidden=False)
+@app.route('/text')
+def text():
+    return render_template('text.html',textIsHidden=False)
+@app.route('/files')
+def file():
+    return render_template('file.html',textIsHidden=False)
+@app.route('/audio')
+def audio():
+    return render_template('audio.html',textIsHidden=False)
+@app.route('/video')
+def video():
+    return render_template('video.html',textIsHidden=False)
+@app.route('/image')
+def image():
+    return render_template('image.html',textIsHidden=False)
 
 @app.route("/encode",methods=['GET','POST'])
 def encode():
@@ -85,7 +103,7 @@ def decode():
         return redirect("/")
     
     if data['type']=="text":
-        return render_template('index.html',textIsHidden=True,hiddenText=data['data'])
+        return render_template('text.html',textIsHidden=True,hiddenText=data['data'])
 
     return send_file(
         data['data'],
@@ -95,3 +113,6 @@ def decode():
         )
 
 
+
+if __name__ == "__main__":
+    app.run(debug=True)
