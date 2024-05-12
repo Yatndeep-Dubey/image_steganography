@@ -1,11 +1,69 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shree Ganeshay Namah 🙏</title>
+    <title>Document</title>
 </head>
 <body>
-    <h1>Shree Ganeshay Namah 🙏 </h1>
+    <input type="text" id="myInput">
+<p id="output"></p>
+
 </body>
 </html>
+
+<script>
+
+
+const strength = { 
+            1: "Very Weak", 
+            2: "Weak", 
+            3: "Meduim", 
+            4: "Strong", 
+        }; 
+        function checkStrength(pass) { 
+            if (pass.length > 15) 
+                return  " Password is too lengthy"
+            else if (pass.length < 8) 
+                return  " Password is too short"
+
+            let regex = 
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@.#$!%*?&])[A-Za-z\d@.#$!^%*?&]{8,15}$/; 
+            if (regex.test(pass)) { 
+                return  " Password is Strong"
+            } 
+            let count = 0; 
+            let regex1 = /[a-z]/; 
+            if (regex1.test(pass)) count++; 
+            let regex2 = /[A-Z]/; 
+            if (regex2.test(pass)) count++; 
+            let regex3 = /[\d]/; 
+            if (regex3.test(pass)) count++; 
+            let regex4 = /[!@#$%^&*.?]/; 
+            if (regex4.test(pass)) count++; 
+
+            return strength[count];
+        }
+
+    // Get a reference to the input element
+const inputElement = document.getElementById('myInput');
+
+// Get a reference to the output element where you want to display the response
+const outputElement = document.getElementById('output');
+
+
+// Add an event listener to the input element to detect changes
+inputElement.addEventListener('input', function(event) {
+    // When the input value changes, update the output element with the input value
+    
+    outputElement.textContent = checkStrength(event.target.value)
+
+});
+
+
+
+ 
+
+</script>

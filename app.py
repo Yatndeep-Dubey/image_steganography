@@ -79,7 +79,7 @@ def encode():
 
     encode_password = request.form.get('encodePassword')
     collection_data['password'] = encode_password
-
+     
     mycollection.insert_one(collection_data)
     return send_file(imgByteArr,
         mimetype='image/png',
